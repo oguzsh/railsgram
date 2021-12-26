@@ -11,11 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <main class="container mx-auto">
-      <%= yield %>
-    </main>
+  <body class="bg-gray-50">
+    <%= yield %>
   </body>
 </html>

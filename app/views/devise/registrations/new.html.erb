@@ -1,29 +1,43 @@
-<h2>Sign up</h2>
+<div class="flex flex-column justify-center items-center h-screen">
+  <div class="w-full max-w-xs m-6">
+    <div class="bg-white border border-gray-300 px-6 pt-6 pb-8 mb-4">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="mb-6 flex flex-col items-center justify-center">
+          <img src="https://res.cloudinary.com/oguzsh-web/image/upload/c_scale,w_180/e_blackwhite/v1640527527/36503-Railsgram-download-v1-removebg-preview_2_i2bqvs.png"
+               alt="Railsgram">
+          <h4 class="text-gray-500 font-medium text-center mt-3">
+            Sign up to see photos and videos from your friends.
+          </h4>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="mb-2">
+          <%= f.email_field :email, placeholder: 'Email address', autocomplete: "email", class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
+
+        <div class="mb-2">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password confirmation', class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
+
+        <div class="actions mb-4">
+          <%= f.submit "Sign up", class: 'w-full cursor-pointer bg-sky-500 text-white text-sm font-semibold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline focus:bg-sky-300' %>
+        </div>
+
+        <%= render "devise/shared/error_messages", resource: resource %>
+      <% end %>
+
+    </div>
+    <div class="bg-white border border-gray-300 px-6 py-5">
+      <%- if controller_name != 'sessions' %>
+        <div class="flex justify-center items-center">
+          <p class="text-sm">Have an account?</p>
+          <%= link_to "Log in", new_session_path(resource_name), class: 'text-sm ml-1 text-blue-500 font-medium' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

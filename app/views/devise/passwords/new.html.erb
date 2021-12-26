@@ -1,16 +1,40 @@
-<h2>Forgot your password?</h2>
+<div class="flex flex-column justify-center items-center h-screen">
+  <div class="w-full max-w-xs">
+    <div class="bg-white border border-gray-300 px-6 pt-6 pb-8 mb-4 relative">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="mb-6 flex flex-col items-center justify-center">
+          <img src="https://res.cloudinary.com/oguzsh-web/image/upload/e_bgremoval,q_auto:best/v1640532949/bcd90c1d4868_nm1mdv.png"
+               alt="Railsgram">
+          <h4 class="font-medium text-center mt-3">
+            Trouble Logging In?
+          </h4>
+          <p class="text-sm text-gray-500 text-center mt-2">
+            Enter your email, phone, or username and we'll send you a link to get back into your account.
+          </p>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="mb-6">
+          <%= f.email_field :email, placeholder: 'Email address', autocomplete: "email", class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="actions mb-4">
+          <%= f.submit "Send Login Link", class: 'w-full cursor-pointer bg-sky-500 text-white text-sm font-semibold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline focus:bg-sky-300' %>
+        </div>
+
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="text-center mt-5 mb-12">
+           <div class="flex justify-center items-center mb-4">
+            <div class="border-t w-40"></div>
+            <div class="text-xs text-gray-400 text-center mx-4 font-semibold">OR</div>
+            <div class="border-t w-40"></div>
+          </div>
+          <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to "Create New Account", new_registration_path(resource_name), class: 'text-sm ml-1 font-medium' %>
+          <% end %>
+        </div>
+      <% end %>
+      <%= link_to "Back To Login", new_session_path(resource_name), class: 'border border-gray-300 text-center bg-gray-100 w-full p-2 absolute bottom-0 left-0 text-sm font-medium' %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
