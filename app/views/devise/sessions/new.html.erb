@@ -1,26 +1,45 @@
-<h2>Log in</h2>
+<div class="flex flex-column justify-center items-center h-screen">
+  <div class="w-full max-w-xs m-6">
+    <div class="bg-white border border-gray-300 px-6 pt-6 pb-8 mb-4">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="mb-8 flex justify-center">
+          <img src="https://res.cloudinary.com/oguzsh-web/image/upload/c_scale,w_180/e_blackwhite/v1640527527/36503-Railsgram-download-v1-removebg-preview_2_i2bqvs.png"
+               alt="Railsgram">
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="mb-2">
+          <%= f.email_field :email, placeholder: 'Email address', autocomplete: "email", class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="mb-4">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: 'text-xs placeholder:text-gray-450 placeholder:text-xs appearance-none border border-1 border-gray-300 bg-gray-50 rounded-sm w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+        </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="actions">
+          <%= f.submit "Log In", class: 'w-full cursor-pointer bg-sky-500 text-white text-sm font-semibold py-1.5 px-4 rounded focus:outline-none focus:shadow-outline focus:bg-sky-300' %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-5 mb-1">
+        <div class="flex justify-center items-center mb-4">
+          <div class="border-t w-40"></div>
+          <div class="text-xs text-gray-400 text-center mx-4 font-semibold">OR</div>
+          <div class="border-t w-40"></div>
+        </div>
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot password?", new_password_path(resource_name), class: 'text-xs text-blue-900' %>
+        <% end %>
+        <%= render 'shared/flash' %>
+      </div>
+
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="bg-white border border-gray-300 px-6 py-5">
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <div class="flex justify-center items-center">
+          <p class="text-sm">Don't have an account?</p>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: 'text-sm ml-1 text-blue-500 font-medium' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
