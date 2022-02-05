@@ -1,0 +1,24 @@
+<div id="<%= dom_id post %>">
+
+  <div class="my-5">
+    <% if post.image.attached? %>
+      <%= image_tag post.image, style: "width:200px; display: block" %>
+    <% end %>
+  </div>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= user(post.user_id).email %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Body:</strong>
+    <%= post.body %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
