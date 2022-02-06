@@ -6,14 +6,22 @@
 
     <%= render @post %>
 
-  <div class="my-5">
-    <p class="block font-medium mb-1"> Comments </p>
-    <%= render @post.comments %>
-  </div>
+    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 
-   <%= form_with(model: [@post, @post.comments.build]) do |f| %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+
+    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+    <div class="my-8">
+      <p class="block font-medium mb-1"> Comments </p>
+      <%= render @post.comments %>
+    </div>
+
+     <%= form_with(model: [@post, @post.comments.build]) do |f| %>
       <div class="my-5">
-          <%= f.label :comment %>
+          <%= f.label "New Comment" %>
           <%= f.text_area :body, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
 
           <div class="my-5">
@@ -22,10 +30,5 @@
       </div>
     <% end %>
 
-    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
