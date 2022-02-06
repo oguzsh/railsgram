@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_many :comments
 
   validates :body, presence: true
   validates :body, length: { minimum: 1, maximum: 250 }
