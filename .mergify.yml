@@ -1,0 +1,14 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "#approved-reviews-by>=1"
+      - conflict
+    actions:
+      merge:
+        method: squash
+      assign:
+        add_users:
+          - oguzsh
+      comment:
+        message: This pull request is now in conflicts. Could you fix it @{{author}}? 🙏
+      delete_head_branch:
