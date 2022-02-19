@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :body, presence: true
   validates :body, length: { minimum: 1, maximum: 250 }

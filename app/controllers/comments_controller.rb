@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_post
 
   def index
     @comments = Comment.all
@@ -10,14 +10,14 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = @post.comments.new
   end
 
   def edit; end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
+    @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
@@ -38,9 +38,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1 or /comments/1.json
   def destroy
-    @comment.destroy
+    @comment = @post.comments.find(params[:id])
+    @comment.destory
 
     respond_to do |format|
       format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
@@ -49,11 +49,11 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_comment
-    @comment = Comment.find(params[:id])
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :post_id, :parent_id)
+    params.require(:comment).permit(:body)
   end
 end

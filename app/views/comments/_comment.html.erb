@@ -2,7 +2,7 @@
   <% unless !comment.persisted? %>
     <p class="my-5" >
      <strong class="block font-medium mb-1">
-      <%= @post.user.email %>
+      <%= comment.user.email %>
      </strong>
       <%= comment.body %>
     </p>
