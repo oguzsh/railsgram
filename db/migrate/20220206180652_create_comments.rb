@@ -1,9 +1,9 @@
 class CreateComments < ActiveRecord::Migration[6.1]
   def change
-    create_table :comments, id: :uuid do |t|
+    create_table :comments do |t|
       t.text :body
-      t.integer :post_id
-      t.integer :parent_id
+      t.references :post
+      t.references :user
 
       t.timestamps
     end
