@@ -27,7 +27,7 @@ gem 'devise'
 
 # Use Active Storage variant
 gem 'active_storage_validations'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 # Image Transform
 gem 'mini_magick'
