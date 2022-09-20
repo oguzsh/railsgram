@@ -333,6 +333,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  sprockets-rails (~> 3.4)
   tailwindcss-rails (~> 2.0)
   turbolinks (~> 5)
   tzinfo-data
