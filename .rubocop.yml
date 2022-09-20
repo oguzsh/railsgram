@@ -42,3 +42,6 @@ Metrics/PerceivedComplexity:
 
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
